@@ -1,7 +1,8 @@
 name: Daily Check Cronjob
 on:
   schedule:
-    - cron: "0 11 * * *"
+    # UTC time 3 am is 11 am in Singapore local time
+    - cron: "0 3 * * *"
 
 jobs:
   check-updating:

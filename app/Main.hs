@@ -21,7 +21,6 @@ app :: IO ()
 app = do
    keyEx <- runExceptT getGithubKey
    let Right key = keyEx
-   putStrLn key
    result <- sendRequest "hehonghui/awesome-english-ebooks" key
    case result of
       Nothing -> print "fail to get response data"
