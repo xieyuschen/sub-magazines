@@ -13,11 +13,11 @@ jobs:
         with:
           ghc-version: "8.10.3"
           cabal-version: "3.2"
-      - name: Install dependencies
+      - name: Install dependencies and build
         run: |
           cabal update
-          cabal build --only-dependencies --enable-tests --enable-benchmarks
-      - name: Build
-        run: cabal run .
+          cabal build --only-dependencies --enable-tests --enable-benchmarks sub-magazines
+      - name: Run
+        run: cabal exec sub-magazines
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
