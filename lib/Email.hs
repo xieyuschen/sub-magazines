@@ -4,7 +4,7 @@ module Email where
 
 import Colog.Core (LogAction (..), logStringStdout, (<&))
 import Control.Monad.Except (runExceptT)
-import Data (EmailConfig (eEmail, eHost, eName, ePassword))
+import Data (EmailConfig (eDestination, eEmail, eHost, eName, ePassword))
 import Data.Aeson (FromJSON, decode, withObject, (.:))
 import Data.Aeson.Types (FromJSON (parseJSON))
 import qualified Data.ByteString as B
@@ -47,7 +47,8 @@ sendEmailOut conf url = do
     let user = eEmail conf
     let host = Text.unpack $ eHost conf
     let from = Address (Just $ eName conf) user
-    let to = [from]
+
+    let to = [Address (Just "kindle") $ eDestination conf]
     attachment <- networkFilePart url
     logger <& "retrieve attechment successfully"
     let mail = simpleMail from to cc bcc subject [attachment]
