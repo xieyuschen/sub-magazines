@@ -6,7 +6,6 @@
 
 module Main where
 
--- option+shift+f to format
 import Auth (getGithubKey)
 import Control.Monad.Trans.Except (runExceptT)
 import Data (Author (date), Commit (author), CommitDetail (commit))

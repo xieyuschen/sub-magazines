@@ -70,3 +70,23 @@ instance FromJSON File where
             .: "status"
             <*> o
             .: "raw_url"
+
+data EmailConfig = EmailConfig
+    { eName :: Text
+    , eEmail :: Text
+    , ePassword :: Text
+    , eHost :: Text
+    }
+    deriving (Show)
+
+instance FromJSON EmailConfig where
+    parseJSON = withObject "EmailConfig" $ \o ->
+        EmailConfig
+            <$> o
+            .: "name"
+            <*> o
+            .: "email"
+            <*> o
+            .: "password"
+            <*> o
+            .: "host"
