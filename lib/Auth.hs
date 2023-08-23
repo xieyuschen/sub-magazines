@@ -13,3 +13,6 @@ getEnvWithCheck envName check = do
 
 getGithubKey :: ExceptT String IO String
 getGithubKey = getEnvWithCheck "TOKEN_GITHUB" (not . null)
+
+getEmailConfig :: ExceptT String IO String
+getEmailConfig = getEnvWithCheck "SMTP_CONFIG" (not . null)

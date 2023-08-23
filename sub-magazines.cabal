@@ -33,6 +33,7 @@ library utility
     exposed-modules:
         Auth
         , Github
+        , Email
         , Data
     hs-source-dirs: lib
     default-language: Haskell2010
