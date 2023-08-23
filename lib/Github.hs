@@ -34,6 +34,7 @@ sendRequest repo bearerKey = do
                     let bodyStr = responseBody res
                     return $ decode bodyStr
                 else do
+                    print resCode
                     return Nothing
 
 constructMasterCommitReq :: String -> Request
