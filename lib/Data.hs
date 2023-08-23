@@ -76,6 +76,7 @@ data EmailConfig = EmailConfig
     , eEmail :: Text
     , ePassword :: Text
     , eHost :: Text
+    , eDestination :: Text
     }
     deriving (Show)
 
@@ -90,3 +91,5 @@ instance FromJSON EmailConfig where
             .: "password"
             <*> o
             .: "host"
+            <*> o
+            .: "destination"
