@@ -32,3 +32,4 @@ jobs:
         run: cabal run sub-magazines
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
+          SMTP_CONFIG: ${{ secrets.SMTP_CONFIG }}
