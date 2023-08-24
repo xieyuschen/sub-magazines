@@ -29,6 +29,6 @@ jobs:
           cabal update
           cabal build --only-dependencies --enable-tests --enable-benchmarks sub-magazines
       - name: Run
-        run: cabal exec sub-magazines
+        run: cabal run sub-magazines
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
