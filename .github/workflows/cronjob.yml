@@ -1,5 +1,6 @@
 name: Daily Check Cronjob
 on:
+  workflow_dispatch:
   schedule:
     # UTC time 3 am is 11 am in Singapore local time
     - cron: "0 3 * * *"
@@ -13,6 +14,16 @@ jobs:
         with:
           ghc-version: "8.10.3"
           cabal-version: "3.2"
+      - name: Cache ~/.cabal/packages, ~/.cabal/store and dist-newstyle
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cabal/packages
+            ~/.cabal/store
+            dist-newstyle
+          key: ${{ runner.os }}-${{ matrix.ghc }}-${{ hashFiles('**/*.cabal', '**/cabal.project', '**/cabal.project.freeze') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.ghc }}-
+
       - name: Install dependencies and build
         run: |
           cabal update
