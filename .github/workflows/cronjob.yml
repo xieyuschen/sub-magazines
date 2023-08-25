@@ -27,8 +27,11 @@ jobs:
       - name: Cabal update
         run: cabal update
 
+      - name: Cabal build
+        run: cabal build
+
       - name: Run the cronjob to check magazine updating
-        run: cabal run
+        run: cabal exec sub-magazines
         env:
           TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
           SMTP_CONFIG: ${{ secrets.SMTP_CONFIG }}
