@@ -27,6 +27,7 @@ common common-depends
         , utf8-string
         , co-log-core
         , unliftio
+        , co-log
 
 library utility
     import: common-depends
