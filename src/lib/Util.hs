@@ -17,4 +17,4 @@ getAddedEpubLinks :: CommitDetail -> [Text]
 getAddedEpubLinks info = raw_url <$> filter isAddedEpub (files info)
 
 isAddedEpub :: File -> Bool
-isAddedEpub = liftA2 (&&) (\x -> status x == Text.pack "added") (\x -> Text.isSuffixOf (raw_url x) $ Text.pack ".epub")
+isAddedEpub = liftA2 (&&) (\x -> status x == Text.pack "added") (\x -> Text.isSuffixOf (Text.pack ".epub") $ raw_url x)
