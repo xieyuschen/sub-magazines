@@ -55,9 +55,3 @@ githubBaseRequest =
             , ("User-Agent", "Sub-magazines")
             ]
         }
-
--- timeWithinOneDay checks if the first time is later than the second time
--- but earlier than 1 day later than the second time.
-withinOneDay :: UTCTime -> UTCTime -> Bool
--- liftA2 lifts the Bool to a0 -> Bool which allows we to bind the expression together
-withinOneDay = liftA2 (&&) <$> (>) <*> (<=) . addUTCTime (-nominalDay)
