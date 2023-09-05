@@ -21,7 +21,8 @@ import qualified Data.Text as Text
 import Data.Time (defaultTimeLocale, formatTime, getCurrentTime)
 import Email (sendEmailOut)
 import GHC.Stack (getCurrentCCS)
-import Github (sendRequest, withinOneDay)
+import Github (sendRequest)
+import Util (getAddedEpubLinks, withinOneDay)
 
 import Colog (
     HasLog (..),
@@ -84,8 +85,7 @@ app = do
                     case decode $ BLU.fromString rawConf of
                         Nothing -> runLog E "fail to analyze json to email config"
                         Just emailConf -> do
-                            let filters = liftA2 (&&) (\x -> status x == Text.pack "added") (\x -> Text.isSuffixOf (raw_url x) $ Text.pack ".epub")
-                            let addedUrl = map raw_url $ filter filters (files info)
-                            runLog D $ Text.unlines addedUrl
-                            forM_ addedUrl (sendEmailOut emailConf)
+                            let links = getAddedEpubLinks info
+                            runLog D $ Text.unlines links
+                            forM_ links (sendEmailOut emailConf)
                 else runLog I "no recently(1 day) updated books"

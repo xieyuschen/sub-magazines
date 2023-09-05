@@ -36,6 +36,7 @@ library utility
         , Github
         , Email
         , Data
+        , Util 
     hs-source-dirs: src/lib
     
     default-language: Haskell2010
