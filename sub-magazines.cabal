@@ -48,3 +48,21 @@ executable sub-magazines
         utility
     hs-source-dirs:   src/app
     default-language: Haskell2010
+
+test-suite spec
+  import: common-depends 
+  type:               exitcode-stdio-1.0
+  hs-source-dirs:     test
+  default-language:   Haskell2010
+  main-is:            Spec.hs
+  ghc-options:        -Wall
+  build-depends:
+    , hspec
+    , QuickCheck
+    , quickcheck-instances
+    , utility
+  other-modules:
+    DataSpec,
+    UtilSpec,
+    Common
+  build-tool-depends: hspec-discover:hspec-discover

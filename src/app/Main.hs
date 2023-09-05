@@ -82,6 +82,7 @@ app = do
             runLog I $ Text.pack ("last time date is: " ++ formatTime defaultTimeLocale "%m/%d/%Y %I:%M %p" lastUpdate)
             if withinOneDay now lastUpdate
                 then do
+                    runLog I "last updating is within one day"
                     case decode $ BLU.fromString rawConf of
                         Nothing -> runLog E "fail to analyze json to email config"
                         Just emailConf -> do
