@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               sub-magazines
-version:            1.0.0
+version:            1.0.1
 
 author:             xieyuschen 
 maintainer:         xieyuschen@gmail.com
@@ -36,7 +36,8 @@ library utility
         , Github
         , Email
         , Data
-    hs-source-dirs: lib
+    hs-source-dirs: src/lib
+    
     default-language: Haskell2010
 
 executable sub-magazines
@@ -44,5 +45,5 @@ executable sub-magazines
     main-is:          Main.hs
     build-depends:    
         utility
-    hs-source-dirs:   app
+    hs-source-dirs:   src/app
     default-language: Haskell2010
