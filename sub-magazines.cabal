@@ -21,8 +21,8 @@ common common-depends
         , aeson
         , text
         , time
-        , smtp-mail
-        , mime-mail
+        , smtp-mail >= 0.3.0.0
+        , mime-mail >= 0.5.0
         , bytestring
         , utf8-string
         , co-log-core
