@@ -1,6 +1,6 @@
 cabal-version:      2.4
 name:               sub-magazines
-version:            1.0.1
+version:            1.1.0
 
 author:             xieyuschen 
 maintainer:         xieyuschen@gmail.com
