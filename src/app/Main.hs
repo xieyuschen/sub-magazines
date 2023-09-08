@@ -56,6 +56,7 @@ import Prelude hiding (log)
 main :: IO ()
 main = app
 
+
 logStdoutAction :: LogAction IO Message
 logStdoutAction = cmap fmtMessage logTextStdout
 

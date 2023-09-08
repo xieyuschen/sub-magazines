@@ -14,10 +14,12 @@ import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text as Text
+import Network.HTTP.Client (responseTimeoutMicro)
 import Network.HTTP.Simple (
     getResponseBody,
     httpBS,
     parseRequest,
+    setRequestResponseTimeout,
  )
 import Network.Mail.Mime (
     Address (Address),
@@ -60,6 +62,8 @@ networkFilePart :: Text -> IO Part
 networkFilePart url = do
     let fileName = Prelude.last $ T.splitOn "/" url
     req <- parseRequest $ T.unpack url
+    let timeout = responseTimeoutMicro 60000000
+    let req' = setRequestResponseTimeout timeout req
     resp <- httpBS req
     let content = getResponseBody resp
     return $ filePartBS "application/octet-stream" fileName $ L.pack $ B.unpack content
