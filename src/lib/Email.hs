@@ -14,10 +14,12 @@ import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text as Text
+import Network.HTTP.Client (responseTimeoutMicro)
 import Network.HTTP.Simple (
     getResponseBody,
     httpBS,
     parseRequest,
+    setRequestResponseTimeout,
  )
 import Network.Mail.Mime (
     Address (Address),
@@ -48,7 +50,7 @@ sendEmailOut conf url = do
     let host = Text.unpack $ eHost conf
     let from = Address (Just $ eName conf) user
 
-    let to = [Address (Just "kindle") $ eDestination conf]
+    let to = [Address (Just "xieyuschen_kindle") $ eDestination conf]
     attachment <- networkFilePart url
     logger <& "retrieve attechment successfully"
     let mail = simpleMail from to cc bcc subject [attachment]
@@ -60,6 +62,8 @@ networkFilePart :: Text -> IO Part
 networkFilePart url = do
     let fileName = Prelude.last $ T.splitOn "/" url
     req <- parseRequest $ T.unpack url
+    let timeout = responseTimeoutMicro 60000000
+    let req' = setRequestResponseTimeout timeout req
     resp <- httpBS req
     let content = getResponseBody resp
     return $ filePartBS "application/octet-stream" fileName $ L.pack $ B.unpack content
