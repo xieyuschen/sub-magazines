@@ -50,7 +50,7 @@ sendEmailOut conf url = do
     let host = Text.unpack $ eHost conf
     let from = Address (Just $ eName conf) user
 
-    let to = [Address (Just "kindle") $ eDestination conf]
+    let to = [Address (Just "xieyuschen_kindle") $ eDestination conf]
     attachment <- networkFilePart url
     logger <& "retrieve attechment successfully"
     let mail = simpleMail from to cc bcc subject [attachment]
