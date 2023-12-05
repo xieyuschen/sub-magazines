@@ -64,6 +64,8 @@ runLog s str = usingLoggerT logStdoutAction $ log s str
 
 app :: IO ()
 app = do
+    let debug = False
+
     runLog I "start cronjob of sub-magazine"
     runLog I "read credentials from environment"
     keyEx <- runExceptT getGithubKey
@@ -81,7 +83,7 @@ app = do
             runLog I $ Text.pack ("current time is: " ++ formatTime defaultTimeLocale "%m/%d/%Y %I:%M %p" now)
             let lastUpdate = date $ author $ commit info
             runLog I $ Text.pack ("last time date is: " ++ formatTime defaultTimeLocale "%m/%d/%Y %I:%M %p" lastUpdate)
-            if withinOneDay now lastUpdate
+            if debug || withinOneDay now lastUpdate
                 then do
                     runLog I "last updating is within one day"
                     case decode $ BLU.fromString rawConf of
