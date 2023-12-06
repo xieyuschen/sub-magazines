@@ -20,3 +20,11 @@ The Github action relies on configurations in environment variables.
   ```
 
 - `TOKEN_GITHUB`: String format.
+
+### Local Debug
+
+Exporting the environment variables like this:
+```sh
+export SMTP_CONFIG="{\"name\":\"xieyuschen\",\"email\":\"example@gmail.com\",\"password\":\"your-password\",\"host\":\"smtp.gmail.com\",\"destination\":\"destination@kindle.cn\"}"
+export export TOKEN_GITHUB=github_blablabla
+```

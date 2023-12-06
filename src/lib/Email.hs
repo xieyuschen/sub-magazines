@@ -28,6 +28,7 @@ import Network.Mail.Mime (
     htmlPart,
     plainPart,
  )
+
 import Network.Mail.SMTP (
     Address (Address),
     sendMailWithLogin,
@@ -39,6 +40,7 @@ cc :: [a]
 cc = []
 bcc :: [a]
 bcc = []
+emptyBody = []
 subject :: Text
 subject = "Daily Magazine Updation Pushing"
 
@@ -49,11 +51,13 @@ sendEmailOut conf url = do
     let user = eEmail conf
     let host = Text.unpack $ eHost conf
     let from = Address (Just $ eName conf) user
+    let body = plainPart "subscribe"
 
     let to = [Address (Just "xieyuschen_kindle") $ eDestination conf]
     attachment <- networkFilePart url
     logger <& "retrieve attechment successfully"
-    let mail = simpleMail from to cc bcc subject [attachment]
+    
+    let mail = simpleMail from to cc bcc subject [ body, attachment ]
     logger <& "prepare to send out the mail"
     sendMailWithLoginTLS host (Text.unpack user) password mail
     logger <& "sent email successfully"
