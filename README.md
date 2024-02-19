@@ -1,6 +1,6 @@
 # Sub-Magazines
 
-Sub-magazines subscribes to the [magazine repo](https://github.com/hehonghui/awesome-english-ebooks) and sends newly added `epub` format files to my Kindle by email. It checks the latest commit on the master branch daily with the help of scheduled github action.
+Sub-magazines subscribes to the [magazine repo](https://github.com/hehonghui/awesome-english-ebooks) and sends newly added `epub` format files to my Kindle by email. It checks the latest commit on the master branch daily with the help of scheduled github action. Currently, it supports hardcoded destination only.
 
 ## Configuration Scheme
 
